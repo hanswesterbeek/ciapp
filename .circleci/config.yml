@@ -1,0 +1,27 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@3.0.0
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - restore_cache:
+          key: m2
+      - run: mvn clean package
+      - aws-ecr/build-and-push-image:
+          dockerfile: Dockerfile
+          repo: ciapp
+          tag: $(git rev-parse --short HEAD)
+      - save_cache: # saves the project dependencies
+          key: m2
+          paths:
+            - ~/.m2
+workflows:
+  build_and_push:
+    jobs:
+      - build:
+          context: ecr-credentials
