@@ -34,7 +34,7 @@ jobs:
       - anchore/analyze_local_image:
           image_name: ${CIRCLE_PROJECT_REPONAME}:$(git rev-parse --short HEAD)
           timeout: '500'
-          analysis_fail: True
+          policy_failure: True
       - save_cache: # saves the project dependencies
           key: m2
           paths:
