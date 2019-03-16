@@ -24,7 +24,6 @@ jobs:
       - store_artifacts:
           path: ~/test-results/junit
       - run: mvn sonar:sonar -Dsonar.pullrequest.github.repository=hanswesterbeek/ciapp -Dsonar.projectKey=hanswesterbeek_ciapp -Dsonar.organization=hanswesterbeek-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
-      - run: mvn verify
       - codecov/upload:
           file: target/jacoco.exec
       - aws-ecr/build-and-push-image:
