@@ -25,7 +25,7 @@ jobs:
           path: ~/test-results/junit
       - run: mvn sonar:sonar -Dsonar.pullrequest.github.repository=hanswesterbeek/ciapp -Dsonar.projectKey=hanswesterbeek_ciapp -Dsonar.organization=hanswesterbeek-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
       - codecov/upload:
-          file: target/jacoco.exec
+          file: target/site/jacoco/jacoco.xml
       - aws-ecr/build-and-push-image:
           dockerfile: Dockerfile
           repo: ciapp
