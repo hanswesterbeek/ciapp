@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@3.0.0
   codecov: codecov/codecov@1.0.4
+  anchore: anchore/anchore-engine@1.2.0
 jobs:
   build:
     docker:
@@ -30,6 +31,10 @@ jobs:
           dockerfile: Dockerfile
           repo: ciapp
           tag: $(git rev-parse --short HEAD)
+      - anchore/analyze_local_image:
+          image_name: ${CIRCLE_PROJECT_REPONAME}:$(git rev-parse --short HEAD)
+          timeout: '500'
+          analysis_fail: True
       - save_cache: # saves the project dependencies
           key: m2
           paths:
