@@ -13,6 +13,16 @@ jobs:
       - restore_cache:
           key: m2
       - run: mvn clean package
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
       - run: mvn sonar:sonar -Dsonar.pullrequest.github.repository=hanswesterbeek/ciapp -Dsonar.projectKey=hanswesterbeek_ciapp -Dsonar.organization=hanswesterbeek-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
       - run: mvn verify
       - codecov/upload:
