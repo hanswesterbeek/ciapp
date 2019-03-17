@@ -38,6 +38,7 @@ jobs:
   scan-image:
     executor: anchore/anchore_engine
     steps:
+      - checkout
       - anchore/analyze_local_image:
           image_name: '${CIRCLE_PROJECT_REPONAME}:$(git rev-parse --short HEAD)'
           timeout: '500'
@@ -47,6 +48,7 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk
     steps:
+      - checkout
       - aws-ecr/push-image:
           repo: ciapp
           tag: $(git rev-parse --short HEAD)
