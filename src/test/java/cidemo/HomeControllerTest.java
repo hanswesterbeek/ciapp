@@ -1,6 +1,6 @@
 package cidemo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -11,14 +11,15 @@ import cidemo.HomeController.Msg;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HomeControllerTest {
-    private static final String MSG = "foo";
 
-    private HomeController subject = new HomeController(MSG);
+  private static final String MSG = "foo";
 
-    @Test
-    public void spillTheBeans() {
+  private HomeController subject = new HomeController(MSG);
 
-        final Msg msg = subject.spillTheBeans();
-        assertThat(msg.oops, Matchers.equalTo(MSG));
-    }
+  @Test
+  public void spillTheBeans() {
+
+    final Msg msg = subject.spillTheBeans();
+    assertThat(msg.oops, Matchers.equalTo(MSG));
+  }
 }
