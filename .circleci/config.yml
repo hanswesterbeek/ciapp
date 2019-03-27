@@ -27,7 +27,7 @@ jobs:
       - run: mvn sonar:sonar -Dsonar.pullrequest.github.repository=hanswesterbeek/ciapp -Dsonar.projectKey=hanswesterbeek_ciapp -Dsonar.organization=hanswesterbeek-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
       - codecov/upload:
           file: target/site/jacoco/jacoco.xml
-      - aws-ecr/build-image:
+      - aws-ecr/build-and-push-image:
           dockerfile: Dockerfile
           repo: ciapp
           tag: $(git rev-parse --short HEAD)
@@ -39,10 +39,13 @@ jobs:
     executor: anchore/anchore_engine
     steps:
       - checkout
-      - anchore/analyze_local_image:
-          image_name: '${CIRCLE_PROJECT_REPONAME}:$(git rev-parse --short HEAD)'
-          timeout: '500'
-          policy_failure: true
+      - anchore/image_scan:
+          image_name: 'docker.io/anchore/anchore-engine:$(git rev-parse --short HEAD)'
+          private_registry: true
+          registry_name: ''
+          registry_user: '${DOCKER_USER}'
+          registry_pass: '${DOCKER_PASS}'
+
       - anchore/parse_reports
   push-to-ecr:
     docker:
