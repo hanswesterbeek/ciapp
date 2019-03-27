@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@3.0.0
   codecov: codecov/codecov@1.0.4
+  anchore: anchore/anchore-engine@1.2.0
 jobs:
   build:
     docker:
@@ -34,9 +35,37 @@ jobs:
           key: m2
           paths:
             - ~/.m2
+  scan-image:
+    executor: anchore/anchore_engine
+    steps:
+      - checkout
+      - anchore/image_scan:
+          image_name: 'docker.io/anchore/anchore-engine:$(git rev-parse --short HEAD)'
+          private_registry: true
+          registry_name: ''
+          registry_user: '${DOCKER_USER}'
+          registry_pass: '${DOCKER_PASS}'
+
+      - anchore/parse_reports
+  push-to-ecr:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - checkout
+      - aws-ecr/push-image:
+          repo: ciapp
+          tag: $(git rev-parse --short HEAD)
 
 workflows:
+  version: 2
   build_and_push:
     jobs:
       - build:
+          context: ecr-credentials
+      - scan-image:
+          requires:
+            - build
+      - push-to-ecr:
+          requires:
+            - scan-image
           context: ecr-credentials

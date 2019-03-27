@@ -5,3 +5,5 @@
 This is a sample app used as subject to demonstrate a CI-pipeline.
 
 
+## Useful
+`$ circleci config validate`
