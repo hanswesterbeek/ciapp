@@ -6,3 +6,12 @@ Sample app to demo and play with some ci/cd stuff.
 
 # cheatsheet
 
+To build docker image : `./build-n-create-docker-img.sh`
+
+To start everything: `docker-compose up -d`
+
+See all processes: `docker ps`
+
+Watch lb status: `http://0.0.0.0:1936`
+
+Go to app frontend: `http://localhost`
