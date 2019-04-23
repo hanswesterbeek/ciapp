@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: "test"
   ciapp1:
     container_name: ciapp1
-    image: ciapp:40b6b08
+    image: ciapp:${APP_VER}
     ports:
       - 8080
     mem_limit: 128m
@@ -24,7 +24,7 @@ services:
       - dbserver # doesn't quite do what you'd hope...
   ciapp2:
       container_name: ciapp2
-      image: ciapp:40b6b08
+      image: ciapp:${APP_VER}
       ports:
         - 8080
       mem_limit: 128m

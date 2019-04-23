@@ -1,6 +1,9 @@
 package cidemo;
 
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.*;
+
+import java.net.UnknownHostException;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -16,9 +19,9 @@ public class HomeControllerTest {
     private HomeController subject = new HomeController(MSG);
 
     @Test
-    public void spillTheBeans() {
+    public void spillTheBeans() throws UnknownHostException {
 
         final Msg msg = subject.spillTheBeans();
-        assertThat(msg.oops, Matchers.equalTo(MSG));
+        assertThat(msg.msg, startsWith(MSG));
     }
 }

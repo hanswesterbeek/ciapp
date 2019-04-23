@@ -6,12 +6,21 @@ Sample app to demo and play with some ci/cd stuff.
 
 # cheatsheet
 
-To build docker image : `./build-n-create-docker-img.sh`
+To build docker image : `./build.sh`
 
-To start everything: `docker-compose up -d`
+To start everything: 
+```bash
+
+docker-compose up -d -e APP_VER=$(git rev-parse --short HEAD)
+
+````
 
 See all processes: `docker ps`
 
-Watch lb status: `http://0.0.0.0:1936`
+Watch lb status: http://0.0.0.0:1936
 
-Go to app frontend: `http://localhost`
+Go to app frontend: [http://localhost]
+
+Node health: http://localhost/actuator/health
+
+Info: http://localhost/actuator/info
