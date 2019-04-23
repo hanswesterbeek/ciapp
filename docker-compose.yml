@@ -10,7 +10,8 @@ services:
       MYSQL_DATABASE: "lab"
       MYSQL_USER: "test"
       MYSQL_PASSWORD: "test"
-  ciapp:
+  ciapp1:
+    container_name: ciapp1
     image: ciapp:40b6b08
     ports:
       - 8080
@@ -21,3 +22,25 @@ services:
       SPRING_DATASOURCE_PASSWORD: test
     depends_on:
       - dbserver # doesn't quite do what you'd hope...
+  ciapp2:
+      container_name: ciapp2
+      image: ciapp:40b6b08
+      ports:
+        - 8080
+      mem_limit: 128m
+      environment:
+        SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"
+        SPRING_DATASOURCE_USERNAME: test
+        SPRING_DATASOURCE_PASSWORD: test
+      depends_on:
+        - dbserver # doesn't quite do what you'd hope...
+  lb:
+    container_name: mylb
+    image: haproxy:1.9.6
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - 80:80
+      - 1936:1936
+    depends_on:
+      - ciapp1
