@@ -13,7 +13,7 @@ services:
   ciapp1:
     container_name: ciapp1
     image: ciapp:${APP_VER}
-    mem_limit: 128m
+    mem_limit: 256m
     environment:
       SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"
       SPRING_DATASOURCE_USERNAME: test
@@ -23,7 +23,7 @@ services:
   ciapp2:
       container_name: ciapp2
       image: ciapp:${APP_VER}
-      mem_limit: 128m
+      mem_limit: 256m
       environment:
         SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"
         SPRING_DATASOURCE_USERNAME: test

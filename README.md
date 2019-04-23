@@ -11,7 +11,7 @@ To build docker image : `./build.sh`
 To start everything: 
 ```bash
 
-docker-compose up -d -e APP_VER=$(git rev-parse --short HEAD)
+APP_VER=$(git rev-parse --short HEAD) docker-compose up -d 
 
 ````
 
