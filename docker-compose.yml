@@ -13,8 +13,6 @@ services:
   ciapp1:
     container_name: ciapp1
     image: ciapp:${APP_VER}
-    ports:
-      - 8080
     mem_limit: 128m
     environment:
       SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"
@@ -25,8 +23,6 @@ services:
   ciapp2:
       container_name: ciapp2
       image: ciapp:${APP_VER}
-      ports:
-        - 8080
       mem_limit: 128m
       environment:
         SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"
