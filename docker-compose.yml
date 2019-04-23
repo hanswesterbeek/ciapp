@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.6
+    container_name: labmysql
+    ports:
+      - 13333:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "lab"
+      MYSQL_USER: "test"
+      MYSQL_PASSWORD: "test"

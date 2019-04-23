@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/gh/hanswesterbeek/ciapp/branch/master/graph/badge.svg)](https://codecov.io/gh/hanswesterbeek/ciapp)
 
 # Intro
-This is a sample app used as subject to demonstrate a CI-pipeline.
+Sample app to demo and play with some ci/cd stuff.
 
+# cheatsheet
 
