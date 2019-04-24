@@ -69,7 +69,6 @@ output. **Before you rush to the keyboard**, go through the steps below:
 So, essentially achieve this (with zero downtime):
 
  ```sql
-ALTER TABLE person RENAME COLUMN lastt_name TO last_name;
 ALTER TABLE person CHANGE COLUMN lastt_name last_name varchar(255);
 ``` 
 
