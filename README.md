@@ -64,7 +64,7 @@ output. **Before you rush to the keyboard**, go through the steps below:
  3. **How does haproxy know when not to send traffic to a node?**
  4. **We can not update all app-nodes at the same time. Knowing that, write down the answer to this question: What will go wrong if we just include a flyway migration and execute ALTER TABLE and upgrade nodes one by one?**
  5. Ok, now you can start coding :)
- 6. **What if we also had to account for writes to our `lastt_name` column?
+ 6. **Our app does not perform any writes. What if we also had to account for writes to our `lastt_name` column? How would that change our approach?**
 
 So, essentially achieve this (with zero downtime):
 
