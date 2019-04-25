@@ -54,7 +54,7 @@ Connect to the mysql console: `mysql -u test -p -h 127.0.0.1 --port 13333 lab`. 
 Execute the following in this dir:
 
 ```bash
-$ mv docker-compose-starter.yml docker-compose.yml 
+$ cp docker-compose-starter.yml docker-compose.yml 
 $ git checkout f814344
 $ ./build.sh
 $ docker-compose up -d
