@@ -28,9 +28,9 @@ public class HomeController {
     }
 
     private String getFromDb() {
-        return this.jdbcTemplate.queryForObject("SELECT first_name, lastt_name FROM person WHERE first_name='Dave'",
+        return this.jdbcTemplate.queryForObject("SELECT first_name AS fn, lastt_name AS ln FROM person WHERE first_name='Dave'",
                 Collections.emptyMap(),
-                (rs, rowNum) -> rs.getString(1) + " " + rs.getString(2));
+                (rs, rowNum) -> rs.getString("fn") + " " + rs.getString("ln"));
     }
 
     public static class Msg {
