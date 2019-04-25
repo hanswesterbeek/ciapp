@@ -28,10 +28,12 @@ Also, have a look at the [circleci](.circleci/config.yml) and [codecov.io](.code
 
 To build docker image : `./build.sh`
 
+To run app quickly for dev-purposes: `./mvnw spring-boot:run`
+
 To start everything: 
 ```bash
 
-APP_VER=$(git rev-parse --short HEAD) docker-compose up -d 
+docker-compose up -d 
 
 ````
 
@@ -47,12 +49,24 @@ Info: http://localhost/actuator/info
 
 Connect to the mysql console: `mysql -u test -p -h 127.0.0.1 --port 13333 lab`. Password: `test`
 
+# Before you begin
+
+Execute the following in this dir:
+
+```bash
+$ git checkout f814344
+$ ./build.sh
+$ docker-compose up -d
+```
+
+Now you have all of the elements running.
+
 # The exercise
 
 As you can see, there is a big spelling error in the table names. Such things
 have a habit of proliferating throughout code-bases so they must be fixed.
 
-The goal:
+Our goal:
 
 >  Rename the `lastt_name` column to `last_name` while maintaining 100% uptime and not disturbing our imaginary users.
 
