@@ -51,6 +51,16 @@
 		<finalName>app</finalName>
 		<plugins>
 			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>1.8.0</version>
+				<configuration>
+					<to>
+						<image>ciapp:${git.commit.id.abbrev}</image>
+					</to>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>

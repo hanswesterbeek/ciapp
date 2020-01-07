@@ -26,7 +26,7 @@ Also, have a look at the [circleci](.circleci/config.yml) and [codecov.io](.code
 
 # Cheatsheet
 
-To build docker image : `./build.sh`
+To build docker image : `./mvnw compile jib:build`
 
 To run app quickly for dev-purposes: `./mvnw spring-boot:run`
 
