@@ -15,7 +15,7 @@ You can use the [docker-compose file](docker-compose.yml) I have provided to sta
 The application uses [Flyway DB](http://flywaydb.org) to execute SQL migrations. 
 Spring Boot will make sure they get executed _at application startup_ if you put them in [the right location](src/main/resources/db/migration).
 
-Also, have a look at the [circleci](.circleci/config.yml) and [codecov.io](.codecov.yml) setup if you're interested.,
+Also, have a look at the [codecov.io](.codecov.yml) setup if you're interested.,
 
 # What you will learn
 
