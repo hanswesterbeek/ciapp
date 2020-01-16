@@ -11,8 +11,8 @@ services:
       MYSQL_USER: "test"
       MYSQL_PASSWORD: "test"
   ciapp1:
-    container_name: ciapp1
-    image: ciapp:96a676c
+    container_name: ciapp-node1
+    image: ciapp:VERSION_HERE
     mem_limit: 256m
     environment:
       SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"
@@ -21,8 +21,8 @@ services:
     depends_on:
       - dbserver # doesn't quite do what you'd hope...
   ciapp2:
-      container_name: ciapp2
-      image: ciapp:96a676c
+      container_name: ciapp-node2
+      image: ciapp:VERSION_HERE
       mem_limit: 256m
       environment:
         SPRING_DATASOURCE_URL: "jdbc:mysql://dbserver/lab?useSSL=false"

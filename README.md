@@ -4,15 +4,8 @@ will be required.
 
 The application reads a row from a table in MySQL and outputs it into a Json message.
 
-You can use the [docker-compose file](docker-compose.yml) I have provided to startup:
- - haproxy
- - Two application instances
- - MySQL
-
 The application uses [Flyway DB](http://flywaydb.org) to execute SQL migrations. 
 Spring Boot will make sure they get executed _at application startup_ if you put them in [the right location](src/main/resources/db/migration).
-
-Also, have a look at the [codecov.io](.codecov.yml) setup if you're interested.,
 
 # What you will learn
 
@@ -27,12 +20,18 @@ Execute the following in this dir:
 
 ```bash
 $ cp docker-compose-starter.yml docker-compose.yml 
-$ git checkout f814344
 $ ./mvnw compile jib:dockerBuild
-$ docker-compose up -d
 ```
 
-Now you have all of the elements running.
+Note the version that was built using `docker images`. Look for an app called `ciapp`.
+
+Put the version into the right `docker-compose.yml`
+
+Start it up: `docker-compose up -d`
+
+Browse to [http://localhost]
+
+Now you have all of the services running and you're ready to go.
 
 # The exercise
 
@@ -46,13 +45,13 @@ Our goal:
 So, you will have to come up with the steps and execute the commands while users see the same
 output. **Before you rush to the keyboard**, go through the steps below: 
 
- 1. **On paper, draw a diagram of this deployment-setup**
- 2. **What is the role of haproxy during an upgrade?**
- 3. **How does haproxy know when not to send traffic to a node?**
- 4. **We can not update all app-nodes at the same time. Knowing that, write down the answer to this question: What will go wrong if we just include a flyway migration and execute ALTER TABLE and upgrade nodes one by one?**
- 5. **You don't have to use the haproxy admin-api in this exercise. What is the inevitable result of not disabling nodes?**
+ 1. On paper, draw a diagram of this deployment-setup
+ 2. What is the role of the loadbalancer (haproxy) during an upgrade?
+ 3. How does haproxy know when not to send traffic to a node?
+ 4. We can not update all app-nodes at the same time. Knowing that, write down the answer to this question: What will go wrong if we just include a flyway migration and execute ALTER TABLE and upgrade nodes one by one?
+ 5. You don't have to use the haproxy admin-api in this exercise. What is the inevitable result of not disabling nodes?
  6. Ok, now you can start coding :)
- 7. **Our app does not perform any writes. What if we also had to account for writes to our `lastt_name` column? How would that change our approach?**
+ 7. Our app does not perform any writes. What if we also had to account for writes to our `lastt_name` column? How would that change our approach?
 
 So, essentially achieve this (with zero downtime):
 
