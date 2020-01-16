@@ -44,6 +44,10 @@ Our goal:
 
 You can pretend as if there is no updates happening to the `lastt_name` column.
 
+Simulate deployment to a node by putting a new version into `docker-compose.yml`
+
+**But:** You can only update one node at a time.
+
 So, you will have to come up with the steps and execute the commands while users see the same
 output. **Before you rush to the keyboard**, go through the steps below: 
 
