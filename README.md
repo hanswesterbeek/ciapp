@@ -42,6 +42,8 @@ Our goal:
 
 >  Rename the `lastt_name` column to `last_name` while maintaining 100% uptime and not disturbing our imaginary users.
 
+You can pretend as if there is no updates happening to the `lastt_name` column.
+
 So, you will have to come up with the steps and execute the commands while users see the same
 output. **Before you rush to the keyboard**, go through the steps below: 
 
