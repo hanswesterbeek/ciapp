@@ -21,31 +21,6 @@ Also, have a look at the [codecov.io](.codecov.yml) setup if you're interested.,
 - How to execute a rolling update manually. Eg: you will know what to automate and what it means for programmers
   to work on software that is deployed continuously.
 
-# Cheatsheet
-
-To build docker image : `./mvnw compile jib:build`
-
-To run app quickly for dev-purposes: `./mvnw spring-boot:run`
-
-To start everything: 
-```bash
-
-docker-compose up -d 
-
-````
-
-See all processes: `docker ps`
-
-Watch loadbalancer status: http://0.0.0.0:1936
-
-Go to app frontend: [http://localhost]
-
-Node health: http://localhost/actuator/health
-
-Info: http://localhost/actuator/info
-
-Connect to the mysql console: `mysql -u test -p -h 127.0.0.1 --port 13333 lab`. Password: `test`
-
 # Before you begin
 
 Execute the following in this dir:
@@ -53,7 +28,7 @@ Execute the following in this dir:
 ```bash
 $ cp docker-compose-starter.yml docker-compose.yml 
 $ git checkout f814344
-$ ./build.sh
+$ ./mvnw compile jib:dockerBuild
 $ docker-compose up -d
 ```
 
@@ -91,3 +66,16 @@ There will be a little bit of code you need to change. You can find it in [HomeC
 
 Here's an [article for inspiration](https://thoughts-on-java.org/update-database-schema-without-downtime/)
 
+# Cheatsheet
+
+See all processes: `$docker ps`
+
+Watch loadbalancer status: [http://0.0.0.0:1936]
+
+Go to app frontend: [http://localhost]
+
+Node health: [http://localhost/actuator/health]
+
+Info: [http://localhost/actuator/info]
+
+Connect to the mysql console: `mysql -u test -p -h 127.0.0.1 --port 13333 lab`. Password: `test`
